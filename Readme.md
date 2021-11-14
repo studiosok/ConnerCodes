@@ -1,0 +1,1 @@
+If not showing task pane, Insert > Office Add-Ins > My Add-Ins > upload manifest.xml
