@@ -10,7 +10,7 @@
     "app_to_debug": "excel",
     "app_type_to_debug": "desktop",
     "dev_server_port": 3000,
-    "document": "https://1drv.ms/x/s!AhFJGKKSTkLrakN-fZTBYTqtGhw?e=F5uxlJ"
+    "document": "https://1drv.ms/x/s!AhFJGKKSTkLrfN9WZiIL2aBf5lI?e=S4ZXCN"
   },
   "scripts": {
     "build": "webpack --mode production",

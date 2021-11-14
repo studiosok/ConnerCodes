@@ -25,40 +25,29 @@
         <img width="90" height="90" src="../../assets/logo-filled.png" alt="Contoso" title="Contoso" />
         <h1 class="ms-font-su">Hi Conner!</h1>
     </header>
-    <section id="sideload-msg" class="ms-welcome__main">
-        <h2 class="ms-font-xl">Please sideload your add-in to see app body.</h2>
-    </section>
     <main id="app-body" class="ms-welcome__main" style="display: none;">
-        <h2 class="ms-font-xl"></h2>
         <ul class="ms-List ms-welcome__features">
             <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Ribbon ms-font-xl"></i>
-                <span class="ms-font-m" id="message"></span>
-            </li>
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Unlock ms-font-xl"></i>
-                <span class="ms-font-m" id="depMessage"></span>
-            </li>
-            <li class="ms-ListItem">
-                <i class="ms-Icon ms-Icon--Design ms-font-xl"></i>
-                <span class="ms-font-m" id="precMessage"></span>
+                <span class="ms-font-l" id="message"></span>
             </li>
         </ul>
-        <p class="ms-font-l"><b>Fun</b>.</p>
-        <div role="button" id="run" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">View all formula cells</span>
+        <p class="ms-font-xl"><b>Worksheet:</b></p>
+        <div role="button" id="run" class="ms-Button ms-Button--hero ms-font-l">
+            <span class="ms-Button-label">All cells with formulas</span>
         </div>
-        <div role="button" id="showPrecedents" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">View Selected Cell Precedents</span>
+        <p class="ms-font-xl"><b>Selected Cell:</b></p>
+        <div role="button" id="showPrecedents" class="ms-Button ms-Button--hero ms-font-l">
+            <span class="ms-Button-label">Precedents</span>
         </div>
-        <div role="button" id="showDependents" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">View Selected Cell Dependents</span>
+        <div role="button" id="showDependents" class="ms-Button ms-Button--hero ms-font-l">
+            <span class="ms-Button-label">Dependents</span>
         </div>
-        <div role="button" id="showAll" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">View Selected Cell Precedents & Dependents</span>
+        <div role="button" id="showAll" class="ms-Button ms-Button--hero ms-font-l">
+            <span class="ms-Button-label">Precedents & Dependents</span>
         </div>
-        <div role="button" id="clear" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl">
-            <span class="ms-Button-label">Clear</span>
+        <span>———————</span>
+        <div role="button" id="clear" class="ms-Button ms-Button--hero ms-font-l">
+            <span class="ms-Button-label">Clear All</span>
         </div>
     </main>
 </body>

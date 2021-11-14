@@ -3,11 +3,8 @@
  * See LICENSE in the project root for license information.
  */
 
-/* global console, document, Excel, Office */
-
 Office.onReady((info) => {
   if (info.host === Office.HostType.Excel) {
-    document.getElementById("sideload-msg").style.display = "none";
     document.getElementById("app-body").style.display = "flex";
     document.getElementById("run").onclick = run;
     document.getElementById("showAll").onclick = showAll;
@@ -22,10 +19,10 @@ export async function clear() {
     await Excel.run(async (context) => {
       const activeSheet = context.workbook.worksheets.getActiveWorksheet();
       const ranges = activeSheet.getRanges();
-      ranges.load("format/fill/color");
+      ranges.load("format/fill/color, address");
       return context.sync().then(function () {
-        // Check whether affected by other functions
-        ranges.format.fill.color = "White";
+          ranges.format.fill.color = "White";
+          message("message", "");
       });
     });
   } catch (error) {
@@ -49,6 +46,7 @@ const message = (id: any, message: any) => {
 export async function showAll() {
   try {
     await Excel.run(async (context) => {
+      message("message", "");
       const targetCell = context.workbook.getActiveCell();
 
       const directPrec = targetCell.getDirectPrecedents();
@@ -70,34 +68,25 @@ export async function showAll() {
     });
   } catch (error) {
     if (error.code === "ItemNotFound") {
-      message("message", "Relevant cells not found");
+      message("message", "Both precedent & dependent cells not found");
     }
     console.error(error);
   }
 }
+
 export async function showPrecedents() {
   try {
     await Excel.run(async (context) => {
-      const sheet = context.workbook.worksheets.getActiveWorksheet();
+      message("message", "");
       const targetCell = context.workbook.getActiveCell();
-
       const directPrec = targetCell.getDirectPrecedents();
       targetCell.load("address");
       directPrec.areas.load("address");
-      const previousAddress = directPrec;
       const color = colorPicker();
       return context.sync().then(function () {
         for (let i = 0; i < directPrec.areas.items.length; i++) {
           directPrec.areas.items[i].format.fill.color = color;
         }
-        sheet.onSelectionChanged.add(async (event) => {
-          previousAddress.load("address");
-          return context.sync().then(function () {
-            for (let i = 0; i < previousAddress.areas.items.length; i++) {
-              event.type ?? (previousAddress.areas.items[i].format.fill.color = "white");
-            }
-          });
-        });
       });
     });
   } catch (error) {
@@ -111,8 +100,9 @@ export async function showPrecedents() {
 export async function showDependents() {
   try {
     await Excel.run(async (context) => {
-      const targetCell = context.workbook.getActiveCell();
+      message("message", "");
 
+      const targetCell = context.workbook.getActiveCell();
       const directDep = targetCell.getDirectDependents();
       targetCell.load("address");
       directDep.areas.load("address");
@@ -136,6 +126,7 @@ export async function showDependents() {
 export async function run() {
   try {
     await Excel.run(async (context) => {
+      message("message", "");
       const sheet = context.workbook.worksheets.getActiveWorksheet();
       const range = sheet.getRanges();
       const formulaRanges = range.getSpecialCellsOrNullObject(Excel.SpecialCellType.formulas);
@@ -144,7 +135,7 @@ export async function run() {
           message("message", "No formulas found");
           return;
         }
-        formulaRanges.format.fill.color = "#f5a8bb";
+        formulaRanges.format.fill.color = "#ffe6f2";
         context.sync();
       });
       return context.sync();
